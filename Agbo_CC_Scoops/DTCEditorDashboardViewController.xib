@@ -6,6 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DTCEditorDashboardViewController">
             <connections>
+                <outlet property="profileImageView" destination="czc-VY-s0K" id="bKR-Qa-e9P"/>
+                <outlet property="profileNameLabel" destination="GYd-P7-mi6" id="wNa-r7-62a"/>
+                <outlet property="publishedScoopsLabel" destination="y8M-xt-lyF" id="es1-SM-cni"/>
+                <outlet property="scoopsTableView" destination="Mhs-88-8Lp" id="CH4-Tp-b98"/>
+                <outlet property="totalScoopsLabel" destination="nqI-mC-8Jd" id="Yce-c6-w00"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
