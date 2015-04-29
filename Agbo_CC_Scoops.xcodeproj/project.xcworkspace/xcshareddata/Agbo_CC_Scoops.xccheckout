@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>290B9718-8E45-4E34-B930-9E0CAA9E7002</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>76852F3C7F54DEBD5E48758E1B5C6BDA24B11E7C</key>
+		<string>https://bitbucket.org/daviddetena/agbo_cc_scoops_magazine.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Agbo_CC_Scoops.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>76852F3C7F54DEBD5E48758E1B5C6BDA24B11E7C</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/daviddetena/agbo_cc_scoops_magazine.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>76852F3C7F54DEBD5E48758E1B5C6BDA24B11E7C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>76852F3C7F54DEBD5E48758E1B5C6BDA24B11E7C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Agbo_CC_Scoops</string>
+		</dict>
+	</array>
+</dict>
+</plist>

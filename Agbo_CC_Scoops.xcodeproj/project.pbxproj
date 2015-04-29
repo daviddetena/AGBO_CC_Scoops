@@ -13,6 +13,12 @@
 		59449C1E1AF12CAA0003EB50 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59449C1C1AF12CAA0003EB50 /* LaunchScreen.xib */; };
 		59449C2A1AF12CAB0003EB50 /* Agbo_CC_ScoopsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 59449C291AF12CAB0003EB50 /* Agbo_CC_ScoopsTests.m */; };
 		59449C341AF12CCD0003EB50 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59449C331AF12CCD0003EB50 /* WindowsAzureMobileServices.framework */; };
+		59449C371AF133C40003EB50 /* DTCScoop.m in Sources */ = {isa = PBXBuildFile; fileRef = 59449C361AF133C40003EB50 /* DTCScoop.m */; };
+		59449C411AF137EC0003EB50 /* DTCHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59449C3F1AF137EC0003EB50 /* DTCHomeScreenViewController.m */; };
+		59449C421AF137EC0003EB50 /* DTCHomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59449C401AF137EC0003EB50 /* DTCHomeScreenViewController.xib */; };
+		59449C481AF13F740003EB50 /* DTCAuthProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 59449C471AF13F740003EB50 /* DTCAuthProfile.m */; };
+		59449C4C1AF141480003EB50 /* DTCEditorDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59449C4A1AF141480003EB50 /* DTCEditorDashboardViewController.m */; };
+		59449C4D1AF141480003EB50 /* DTCEditorDashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59449C4B1AF141480003EB50 /* DTCEditorDashboardViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +43,17 @@
 		59449C281AF12CAB0003EB50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59449C291AF12CAB0003EB50 /* Agbo_CC_ScoopsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Agbo_CC_ScoopsTests.m; sourceTree = "<group>"; };
 		59449C331AF12CCD0003EB50 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
+		59449C351AF133C40003EB50 /* DTCScoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCScoop.h; sourceTree = "<group>"; };
+		59449C361AF133C40003EB50 /* DTCScoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCScoop.m; sourceTree = "<group>"; };
+		59449C3D1AF1343A0003EB50 /* AzureSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AzureSettings.h; sourceTree = "<group>"; };
+		59449C3E1AF137EC0003EB50 /* DTCHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCHomeScreenViewController.h; sourceTree = "<group>"; };
+		59449C3F1AF137EC0003EB50 /* DTCHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCHomeScreenViewController.m; sourceTree = "<group>"; };
+		59449C401AF137EC0003EB50 /* DTCHomeScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DTCHomeScreenViewController.xib; sourceTree = "<group>"; };
+		59449C461AF13F740003EB50 /* DTCAuthProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCAuthProfile.h; sourceTree = "<group>"; };
+		59449C471AF13F740003EB50 /* DTCAuthProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCAuthProfile.m; sourceTree = "<group>"; };
+		59449C491AF141480003EB50 /* DTCEditorDashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCEditorDashboardViewController.h; sourceTree = "<group>"; };
+		59449C4A1AF141480003EB50 /* DTCEditorDashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCEditorDashboardViewController.m; sourceTree = "<group>"; };
+		59449C4B1AF141480003EB50 /* DTCEditorDashboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DTCEditorDashboardViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,12 +96,16 @@
 		59449C121AF12CAA0003EB50 /* Agbo_CC_Scoops */ = {
 			isa = PBXGroup;
 			children = (
-				59449C331AF12CCD0003EB50 /* WindowsAzureMobileServices.framework */,
-				59449C171AF12CAA0003EB50 /* AppDelegate.h */,
-				59449C181AF12CAA0003EB50 /* AppDelegate.m */,
+				59449C381AF133CB0003EB50 /* Model */,
+				59449C3A1AF133E00003EB50 /* Views */,
+				59449C3B1AF133E60003EB50 /* Controllers */,
+				59449C391AF133D60003EB50 /* AppDelegate */,
 				59449C1A1AF12CAA0003EB50 /* Images.xcassets */,
 				59449C1C1AF12CAA0003EB50 /* LaunchScreen.xib */,
+				59449C3C1AF133F10003EB50 /* Resources */,
 				59449C131AF12CAA0003EB50 /* Supporting Files */,
+				59449C331AF12CCD0003EB50 /* WindowsAzureMobileServices.framework */,
+				59449C3D1AF1343A0003EB50 /* AzureSettings.h */,
 			);
 			path = Agbo_CC_Scoops;
 			sourceTree = "<group>";
@@ -113,6 +134,53 @@
 				59449C281AF12CAB0003EB50 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		59449C381AF133CB0003EB50 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				59449C351AF133C40003EB50 /* DTCScoop.h */,
+				59449C361AF133C40003EB50 /* DTCScoop.m */,
+				59449C461AF13F740003EB50 /* DTCAuthProfile.h */,
+				59449C471AF13F740003EB50 /* DTCAuthProfile.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		59449C391AF133D60003EB50 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				59449C171AF12CAA0003EB50 /* AppDelegate.h */,
+				59449C181AF12CAA0003EB50 /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		59449C3A1AF133E00003EB50 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		59449C3B1AF133E60003EB50 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				59449C3E1AF137EC0003EB50 /* DTCHomeScreenViewController.h */,
+				59449C3F1AF137EC0003EB50 /* DTCHomeScreenViewController.m */,
+				59449C401AF137EC0003EB50 /* DTCHomeScreenViewController.xib */,
+				59449C491AF141480003EB50 /* DTCEditorDashboardViewController.h */,
+				59449C4A1AF141480003EB50 /* DTCEditorDashboardViewController.m */,
+				59449C4B1AF141480003EB50 /* DTCEditorDashboardViewController.xib */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		59449C3C1AF133F10003EB50 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +265,8 @@
 			files = (
 				59449C1E1AF12CAA0003EB50 /* LaunchScreen.xib in Resources */,
 				59449C1B1AF12CAA0003EB50 /* Images.xcassets in Resources */,
+				59449C4D1AF141480003EB50 /* DTCEditorDashboardViewController.xib in Resources */,
+				59449C421AF137EC0003EB50 /* DTCHomeScreenViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,8 +284,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59449C371AF133C40003EB50 /* DTCScoop.m in Sources */,
 				59449C191AF12CAA0003EB50 /* AppDelegate.m in Sources */,
+				59449C4C1AF141480003EB50 /* DTCEditorDashboardViewController.m in Sources */,
 				59449C161AF12CAA0003EB50 /* main.m in Sources */,
+				59449C411AF137EC0003EB50 /* DTCHomeScreenViewController.m in Sources */,
+				59449C481AF13F740003EB50 /* DTCAuthProfile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
