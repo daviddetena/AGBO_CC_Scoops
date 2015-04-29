@@ -12,6 +12,7 @@
 		59449C1B1AF12CAA0003EB50 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59449C1A1AF12CAA0003EB50 /* Images.xcassets */; };
 		59449C1E1AF12CAA0003EB50 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59449C1C1AF12CAA0003EB50 /* LaunchScreen.xib */; };
 		59449C2A1AF12CAB0003EB50 /* Agbo_CC_ScoopsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 59449C291AF12CAB0003EB50 /* Agbo_CC_ScoopsTests.m */; };
+		59449C341AF12CCD0003EB50 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59449C331AF12CCD0003EB50 /* WindowsAzureMobileServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 		59449C231AF12CAB0003EB50 /* Agbo_CC_ScoopsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Agbo_CC_ScoopsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59449C281AF12CAB0003EB50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59449C291AF12CAB0003EB50 /* Agbo_CC_ScoopsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Agbo_CC_ScoopsTests.m; sourceTree = "<group>"; };
+		59449C331AF12CCD0003EB50 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59449C341AF12CCD0003EB50 /* WindowsAzureMobileServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +79,7 @@
 		59449C121AF12CAA0003EB50 /* Agbo_CC_Scoops */ = {
 			isa = PBXGroup;
 			children = (
+				59449C331AF12CCD0003EB50 /* WindowsAzureMobileServices.framework */,
 				59449C171AF12CAA0003EB50 /* AppDelegate.h */,
 				59449C181AF12CAA0003EB50 /* AppDelegate.m */,
 				59449C1A1AF12CAA0003EB50 /* Images.xcassets */,
@@ -331,6 +335,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Agbo_CC_Scoops",
+				);
 				INFOPLIST_FILE = Agbo_CC_Scoops/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -341,6 +349,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Agbo_CC_Scoops",
+				);
 				INFOPLIST_FILE = Agbo_CC_Scoops/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
