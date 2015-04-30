@@ -19,6 +19,11 @@
 		59449C481AF13F740003EB50 /* DTCAuthProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 59449C471AF13F740003EB50 /* DTCAuthProfile.m */; };
 		59449C4C1AF141480003EB50 /* DTCEditorDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59449C4A1AF141480003EB50 /* DTCEditorDashboardViewController.m */; };
 		59449C4D1AF141480003EB50 /* DTCEditorDashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59449C4B1AF141480003EB50 /* DTCEditorDashboardViewController.xib */; };
+		59564C191AF286FE00EA3CE4 /* DTCNewScoopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59564C171AF286FE00EA3CE4 /* DTCNewScoopViewController.m */; };
+		59564C1A1AF286FE00EA3CE4 /* DTCNewScoopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59564C181AF286FE00EA3CE4 /* DTCNewScoopViewController.xib */; };
+		59564C1C1AF29BC000EA3CE4 /* noimageSquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 59564C1B1AF29BC000EA3CE4 /* noimageSquare.png */; };
+		59564C201AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59564C1E1AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.m */; };
+		59564C211AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59564C1F1AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.xib */; };
 		59C0CE271AF2198300014AA9 /* UIViewController+Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C0CE261AF2198300014AA9 /* UIViewController+Navigation.m */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +60,13 @@
 		59449C491AF141480003EB50 /* DTCEditorDashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCEditorDashboardViewController.h; sourceTree = "<group>"; };
 		59449C4A1AF141480003EB50 /* DTCEditorDashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCEditorDashboardViewController.m; sourceTree = "<group>"; };
 		59449C4B1AF141480003EB50 /* DTCEditorDashboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DTCEditorDashboardViewController.xib; sourceTree = "<group>"; };
+		59564C161AF286FE00EA3CE4 /* DTCNewScoopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCNewScoopViewController.h; sourceTree = "<group>"; };
+		59564C171AF286FE00EA3CE4 /* DTCNewScoopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCNewScoopViewController.m; sourceTree = "<group>"; };
+		59564C181AF286FE00EA3CE4 /* DTCNewScoopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DTCNewScoopViewController.xib; sourceTree = "<group>"; };
+		59564C1B1AF29BC000EA3CE4 /* noimageSquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimageSquare.png; sourceTree = "<group>"; };
+		59564C1D1AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCEditorScoopDetailViewController.h; sourceTree = "<group>"; };
+		59564C1E1AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCEditorScoopDetailViewController.m; sourceTree = "<group>"; };
+		59564C1F1AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DTCEditorScoopDetailViewController.xib; sourceTree = "<group>"; };
 		59C0CE251AF2198300014AA9 /* UIViewController+Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Navigation.h"; sourceTree = "<group>"; };
 		59C0CE261AF2198300014AA9 /* UIViewController+Navigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Navigation.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -176,6 +188,12 @@
 				59449C491AF141480003EB50 /* DTCEditorDashboardViewController.h */,
 				59449C4A1AF141480003EB50 /* DTCEditorDashboardViewController.m */,
 				59449C4B1AF141480003EB50 /* DTCEditorDashboardViewController.xib */,
+				59564C161AF286FE00EA3CE4 /* DTCNewScoopViewController.h */,
+				59564C171AF286FE00EA3CE4 /* DTCNewScoopViewController.m */,
+				59564C181AF286FE00EA3CE4 /* DTCNewScoopViewController.xib */,
+				59564C1D1AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.h */,
+				59564C1E1AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.m */,
+				59564C1F1AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -183,6 +201,7 @@
 		59449C3C1AF133F10003EB50 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				59564C1B1AF29BC000EA3CE4 /* noimageSquare.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -276,10 +295,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59564C1A1AF286FE00EA3CE4 /* DTCNewScoopViewController.xib in Resources */,
 				59449C1E1AF12CAA0003EB50 /* LaunchScreen.xib in Resources */,
 				59449C1B1AF12CAA0003EB50 /* Images.xcassets in Resources */,
+				59564C211AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.xib in Resources */,
 				59449C4D1AF141480003EB50 /* DTCEditorDashboardViewController.xib in Resources */,
 				59449C421AF137EC0003EB50 /* DTCHomeScreenViewController.xib in Resources */,
+				59564C1C1AF29BC000EA3CE4 /* noimageSquare.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,7 +325,9 @@
 				59449C161AF12CAA0003EB50 /* main.m in Sources */,
 				59C0CE271AF2198300014AA9 /* UIViewController+Navigation.m in Sources */,
 				59449C411AF137EC0003EB50 /* DTCHomeScreenViewController.m in Sources */,
+				59564C191AF286FE00EA3CE4 /* DTCNewScoopViewController.m in Sources */,
 				59449C481AF13F740003EB50 /* DTCAuthProfile.m in Sources */,
+				59564C201AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

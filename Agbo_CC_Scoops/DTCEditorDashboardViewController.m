@@ -7,9 +7,13 @@
 //
 
 #import "DTCEditorDashboardViewController.h"
+#import "DTCEditorScoopDetailViewController.h"
+#import "DTCNewScoopViewController.h"
+#import "UIViewController+Navigation.h"
+#import "DTCScoop.h"
 #import "DTCAuthProfile.h"
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
-#import "DTCScoop.h"
+
 @import CoreLocation;
 
 @interface DTCEditorDashboardViewController ()
@@ -23,9 +27,9 @@
 
 
 #pragma mark - Init
--(id) initWithModel:(DTCAuthProfile *) model MSClient:(MSClient *)client{
+-(id) initWithModel:(DTCAuthProfile *) authorProfile MSClient:(MSClient *)client{
     if (self = [super initWithNibName:nil bundle:nil]) {
-        _model = model;
+        _authorProfile = authorProfile;
         _client = client;
         _inReviewScoops = [@[]mutableCopy];
         _publishedScoops = [@[]mutableCopy];
@@ -51,7 +55,19 @@
     [super viewWillAppear:animated];
     [self configureUI];
     [self syncViewWithModel];
+    
+    [self setupNewScoopNotifications];
 }
+
+
+- (void) viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self tearDownNewScoopNotifications];
+}
+
+
+
+#pragma mark - Memory
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -71,7 +87,7 @@
 }
 
 - (void) syncViewWithModel{
-    self.profileNameLabel.text = self.model.name;    
+    self.profileNameLabel.text = self.authorProfile.name;
     
     [self loadProfilePicture];    
     //[self populateTableWithScoops];
@@ -81,7 +97,7 @@
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
         
         // Download image of profile in background
-        NSData *imgData = [NSData dataWithContentsOfURL:self.model.profileImageUrl];
+        NSData *imgData = [NSData dataWithContentsOfURL:self.authorProfile.profileImageUrl];
         
         // Load image in main queue
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -99,9 +115,30 @@
     // Table
     MSTable *scoopsTable = [self.client tableWithName:@"news"];
     
+    /*
+        Query from MSTable
+     */
+    /*
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"status == %@",self.authorProfile.name];
+    
+    [scoopsTable readWithPredicate:predicate completion:^(NSArray *items, NSInteger totalCount, NSError *error) {
+        if (error) {
+            NSLog(@"Error when reading scoops from Azure --> %@", error);
+        }
+        else{
+            [self populateScoopsInTable:items];
+        }
+    }];
+    */
+    
+    /**
+        Query from MSQuery
+     */
+    
     // MSQuery to get all scoops
     MSQuery *query = [scoopsTable query];
-    
+    query.selectFields = @[@"author",@"status",@"title",@"text",@"rating"];
+    query.predicate = [NSPredicate predicateWithFormat:@"author == %@",self.authorProfile.name];
     
     [query readWithCompletion:^(NSArray *items, NSInteger totalCount, NSError *error) {
         if (error) {
@@ -124,21 +161,21 @@
 
     // Create a new Scoop for each item
     for (id item in items) {
-        DTCScoop *scoop = [DTCScoop scoopWithTitle:item[@"titulo"] author:@"" text:item[@"text"] coords:CLLocationCoordinate2DMake(0, 0) image:nil];
-        [self.inReviewScoops addObject:scoop];
-        [self.publishedScoops addObject:scoop];
+        DTCScoop *scoop = [DTCScoop scoopWithTitle:item[@"title"] author:item[@"author"] text:item[@"text"] rating:item[@"rating"] coords:CLLocationCoordinate2DMake(0, 0) image:nil];
         
-        /*
         if ([item[@"status"] isEqualToString:@"InReview"]) {
 
-            // Add to in-review
-            [self.inReviewScoops addObject:scoop];
+            if (![self.inReviewScoops containsObject:scoop]) {
+                // Add to in-review
+                [self.inReviewScoops addObject:scoop];
+            }
         }
         else{
-            // Addo to published
-            [self.publishedScoops addObject:scoop];
+            if (![self.inReviewScoops containsObject:scoop]) {
+                // Add to published
+                [self.publishedScoops addObject:scoop];
+            }
         }
-         */
     }
     [self.scoopsTableView reloadData];
 }
@@ -186,6 +223,7 @@
     
     cell.textLabel.text = scoop.title;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Created at: %@",[fmt stringFromDate:scoop.creationDate]];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
@@ -211,7 +249,13 @@
 #pragma mark - UITableViewDelegate
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    //DTCScoop *scoop = [self scoopAtIndexPath:indexPath];
+    // Deselect highlighted
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    // Present scoop detailed view
+    DTCScoop *scoop = [self scoopAtIndexPath:indexPath];
+    DTCEditorScoopDetailViewController *scoopDetailVC = [[DTCEditorScoopDetailViewController alloc]initWithModel:scoop];
+    [self.navigationController pushViewController:scoopDetailVC animated:YES];
 }
 
 
@@ -220,8 +264,11 @@
 
 -(void) addNewScoop:(id)sender{
     // Present modal view controller to create a new scoop
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"HOLA" message:@"prueba" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Done", nil];
-    [alert show];
+    DTCNewScoopViewController *newScoopVC = [[DTCNewScoopViewController alloc] initWithAuthorProfile:self.authorProfile MSClient:self.client];
+    [self presentViewController:[newScoopVC wrappedInNavigation] animated:YES completion:^{
+        // Reload data when new scoopd saved
+        //[self fetchScoopsFromAzure];
+    }];
 }
 
 -(void) configureLogout:(id)sender{
@@ -248,6 +295,30 @@
         }];
     }
 }
+
+
+
+#pragma mark - Notifications
+
+-(void) setupNewScoopNotifications{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self
+               selector:@selector(notifyThatEditorDidAddScoop:)
+                   name:EDITOR_DID_ADD_SCOOP_NOTIFICATION
+                 object:nil];
+}
+
+- (void) tearDownNewScoopNotifications{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center removeObserver:self];
+}
+
+// When a new scoop is added we need to reload data
+-(void) notifyThatEditorDidAddScoop:(NSDictionary *) info{
+    NSLog(@"Table did notice that new scoop was added");
+    [self fetchScoopsFromAzure];
+}
+    
 
 
 @end

@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 David de Tena. All rights reserved.
 //
 
+#define EDITOR_DID_ADD_SCOOP_NOTIFICATION @"EDITOR_DID_ADD_SCOOP_NOTIFICATION"
+#define EDITOR_DID_ADD_SCOOP @"EDITOR_DID_ADD_SCOOP"
+
 @import UIKit;
 @class DTCAuthProfile;
 @class MSClient;
@@ -16,16 +19,14 @@
 #pragma mark - Properties
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *profileNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *totalScoopsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *publishedScoopsLabel;
 @property (weak, nonatomic) IBOutlet UITableView *scoopsTableView;
 
 @property (strong,nonatomic) MSClient *client;
-@property (strong,nonatomic) DTCAuthProfile *model;
+@property (strong,nonatomic) DTCAuthProfile *authorProfile;
 
 
 #pragma mark - Init
--(id) initWithModel:(DTCAuthProfile *) model MSClient:(MSClient *) client;
+-(id) initWithModel:(DTCAuthProfile *) authorProfile MSClient:(MSClient *) client;
 
 
 @end

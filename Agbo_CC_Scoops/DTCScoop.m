@@ -14,12 +14,14 @@
 +(instancetype) scoopWithTitle:(NSString *) aTitle
                         author:(NSString *) anAuthor
                           text:(NSString *) aText
+                        rating:(NSNumber *) aRating
                         coords:(CLLocationCoordinate2D) coords
                          image:(NSData *) anImage{
     
     return [[self alloc] initWithTitle:aTitle
                                 author:anAuthor
                                   text:aText
+                                rating:aRating
                                 coords:coords
                                  image:anImage];
 }
@@ -30,6 +32,7 @@
 -(id) initWithTitle:(NSString *) aTitle
              author:(NSString *) anAuthor
                text:(NSString *) aText
+             rating:(NSNumber *) aRating
              coords:(CLLocationCoordinate2D) coords
               image:(NSData *) anImage{
 
@@ -37,6 +40,7 @@
         _title = aTitle;
         _author = anAuthor;
         _text = aText;
+        _rating = aRating;
         _coords = coords;
         _image = anImage;
         _creationDate = [NSDate date];
@@ -51,22 +55,23 @@
 
 // Package object in a NSDictionary
 -(NSDictionary *) proxyForDictionary{
-    NSDictionary *dict = @{@"titulo": self.title,
-                           @"noticia":self.text,
-                           @"autor":self.author,
+    NSDictionary *dict = @{@"title": self.title,
+                           @"text":self.text,
+                           @"author":self.author,
                            @"coords":@"",
-                           @"imagen":self.image,
-                           @"estado":self.status};
+                           @"image":self.image,
+                           @"status":self.status};
     
     return dict;
 }
 
 // Package object in a NSDictionary
 -(NSDictionary *) proxyForAzureDictionary{
-    NSDictionary *dict = @{@"titulo": self.title,
-                           @"noticia":self.text,
-                           @"autor":self.author,
-                           @"estado":self.status};
+    NSDictionary *dict = @{@"title": self.title,
+                           @"text":self.text,
+                           @"author":self.author,
+                           @"rating":self.rating,
+                           @"status":self.status};
     
     return dict;
 }

@@ -17,6 +17,7 @@
 @property (copy,nonatomic) NSString *author;
 @property (copy,nonatomic) NSString *text;
 @property (copy,nonatomic) NSString *status;
+@property (nonatomic) NSNumber *rating;
 @property (nonatomic) CLLocationCoordinate2D coords;
 @property (strong,nonatomic) NSData *image;
 @property (strong,nonatomic) NSDate *creationDate;
@@ -26,6 +27,7 @@
 +(instancetype) scoopWithTitle:(NSString *) aTitle
                         author:(NSString *) anAuthor
                           text:(NSString *) aText
+                        rating:(NSNumber *) aRating
                         coords:(CLLocationCoordinate2D) coords
                          image:(NSData *) anImage;
 
@@ -34,6 +36,7 @@
 -(id) initWithTitle:(NSString *) aTitle
              author:(NSString *) anAuthor
                text:(NSString *) aText
+             rating:(NSNumber *) aRating
              coords:(CLLocationCoordinate2D) coords
               image:(NSData *) anImage;
 

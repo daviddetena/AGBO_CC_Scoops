@@ -17,11 +17,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Mhs-88-8Lp">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Mhs-88-8Lp">
                     <rect key="frame" x="8" y="160" width="292" height="382"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <color key="sectionIndexBackgroundColor" red="1" green="0.67777844089999995" blue="0.24684253880000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="sectionIndexBackgroundColor" red="0.00041377548260000002" green="0.58411387069999998" blue="0.97529175609999996" alpha="0.17999999999999999" colorSpace="calibratedRGB"/>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GYd-P7-mi6">
                     <rect key="frame" x="84" y="76" width="210" height="38"/>
@@ -42,7 +42,7 @@
                     <autoresizingMask key="autoresizingMask"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="1" green="0.65496033434484757" blue="0.20612510050284816" alpha="0.13" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.78039215689999997" green="0.92156862750000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <point key="canvasLocation" x="463" y="351"/>
         </view>
