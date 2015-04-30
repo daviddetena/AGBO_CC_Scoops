@@ -13,10 +13,11 @@
 
 #pragma mark - Properties
 
-@property (strong,nonatomic) NSString *title;
-@property (strong,nonatomic) NSString *author;
-@property (strong,nonatomic) NSString *text;
-@property (nonatomic) CLLocationCoordinate2D *coords;
+@property (copy,nonatomic) NSString *title;
+@property (copy,nonatomic) NSString *author;
+@property (copy,nonatomic) NSString *text;
+@property (copy,nonatomic) NSString *status;
+@property (nonatomic) CLLocationCoordinate2D coords;
 @property (strong,nonatomic) NSData *image;
 @property (strong,nonatomic) NSDate *creationDate;
 
@@ -25,14 +26,18 @@
 +(instancetype) scoopWithTitle:(NSString *) aTitle
                         author:(NSString *) anAuthor
                           text:(NSString *) aText
-                        coords:(CLLocationCoordinate2D *) coords
+                        coords:(CLLocationCoordinate2D) coords
                          image:(NSData *) anImage;
 
-#pragma mark - Init
+#pragma mark - Instance methods
+// Designated
 -(id) initWithTitle:(NSString *) aTitle
              author:(NSString *) anAuthor
                text:(NSString *) aText
-             coords:(CLLocationCoordinate2D *) coords
+             coords:(CLLocationCoordinate2D) coords
               image:(NSData *) anImage;
+
+-(NSDictionary *) proxyForDictionary;
+-(NSDictionary *) proxyForAzureDictionary;
 
 @end

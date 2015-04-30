@@ -11,6 +11,7 @@
 #import "DTCEditorDashboardViewController.h"
 #import "AzureSettings.h"
 #import "DTCAuthProfile.h"
+#import "UIViewController+Navigation.h"
 
 @interface DTCHomeScreenViewController (){
     MSClient *client;
@@ -153,7 +154,7 @@
 - (void) presentDashboardForUser:(DTCAuthProfile *) user withMSClient:(MSClient *) msClient{
     //DTCEditorDashboardViewController *editorDashboardVC = [[DTCEditorDashboardViewController alloc] initWithModel:user];
     DTCEditorDashboardViewController *editorDashboardVC = [[DTCEditorDashboardViewController alloc] initWithModel:user MSClient:msClient];
-    [self presentViewController:editorDashboardVC animated:YES completion:nil];
+    [self presentViewController:[editorDashboardVC wrappedInNavigation] animated:YES completion:nil];
 }
 
 #pragma mark - Actions

@@ -14,7 +14,7 @@
 +(instancetype) scoopWithTitle:(NSString *) aTitle
                         author:(NSString *) anAuthor
                           text:(NSString *) aText
-                        coords:(CLLocationCoordinate2D *) coords
+                        coords:(CLLocationCoordinate2D) coords
                          image:(NSData *) anImage{
     
     return [[self alloc] initWithTitle:aTitle
@@ -30,7 +30,7 @@
 -(id) initWithTitle:(NSString *) aTitle
              author:(NSString *) anAuthor
                text:(NSString *) aText
-             coords:(CLLocationCoordinate2D *) coords
+             coords:(CLLocationCoordinate2D) coords
               image:(NSData *) anImage{
 
     if (self = [super init]) {
@@ -40,9 +40,37 @@
         _coords = coords;
         _image = anImage;
         _creationDate = [NSDate date];
+        _status = @"InReview";
     }
     return self;
 }
+
+
+
+#pragma mark - Utils
+
+// Package object in a NSDictionary
+-(NSDictionary *) proxyForDictionary{
+    NSDictionary *dict = @{@"titulo": self.title,
+                           @"noticia":self.text,
+                           @"autor":self.author,
+                           @"coords":@"",
+                           @"imagen":self.image,
+                           @"estado":self.status};
+    
+    return dict;
+}
+
+// Package object in a NSDictionary
+-(NSDictionary *) proxyForAzureDictionary{
+    NSDictionary *dict = @{@"titulo": self.title,
+                           @"noticia":self.text,
+                           @"autor":self.author,
+                           @"estado":self.status};
+    
+    return dict;
+}
+
 
 
 #pragma mark - Overwritten
