@@ -137,7 +137,7 @@
     
     // MSQuery to get all scoops
     MSQuery *query = [scoopsTable query];
-    query.selectFields = @[@"author",@"status",@"title",@"text",@"rating"];
+    //query.selectFields = @[@"author",@"status",@"title",@"text",@"rating"];
     query.predicate = [NSPredicate predicateWithFormat:@"author == %@",self.authorProfile.name];
     
     [query readWithCompletion:^(NSArray *items, NSInteger totalCount, NSError *error) {
@@ -161,7 +161,31 @@
 
     // Create a new Scoop for each item
     for (id item in items) {
-        DTCScoop *scoop = [DTCScoop scoopWithTitle:item[@"title"] author:item[@"author"] text:item[@"text"] rating:item[@"rating"] coords:CLLocationCoordinate2DMake(0, 0) image:nil];
+    
+        //NSLog(@"(%@,%@)",item[@"latitude"],item[@"longitude"]);
+        
+        //
+        
+        CLLocationCoordinate2D current = CLLocationCoordinate2DMake([[NSDecimalNumber decimalNumberWithString:item[@"latitude"]] doubleValue],[[NSDecimalNumber decimalNumberWithString:item[@"longitude"]] doubleValue]);
+        
+        
+        //NSLog(@"%@",current);
+        
+        DTCScoop *scoop = [DTCScoop scoopWithTitle:item[@"title"]
+                                            author:item[@"author"]
+                                              text:item[@"text"]
+                                            coords:current
+                                             image:nil];
+//        DTCScoop *scoop = [DTCScoop scoopWithTitle:item[@"title"]
+//                                            author:item[@"title"]
+//                                              text:item[@"text"]
+//                                          latitude:item[@"latitude"]
+//                                         longitude:item[@"longitude"]
+//                                             image:nil];
+        
+        //DTCScoop *scoop = [DTCScoop scoopWithTitle:item[@"title"] author:item[@"author"] text:item[@"text"] rating:item[@"rating"]  image:nil];
+        
+        NSLog(@"Current location: (%f,%f)",scoop.coords.latitude,scoop.coords.longitude);
         
         if ([item[@"status"] isEqualToString:@"InReview"]) {
 

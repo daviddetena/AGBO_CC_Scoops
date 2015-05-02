@@ -18,7 +18,13 @@
 @property (copy,nonatomic) NSString *text;
 @property (copy,nonatomic) NSString *status;
 @property (nonatomic) NSNumber *rating;
+@property (nonatomic) NSNumber *counter;
 @property (nonatomic) CLLocationCoordinate2D coords;
+//@property (nonatomic) double latitude;
+//@property (nonatomic) double longitude;
+@property (copy,nonatomic) NSString *latitude;
+@property (copy,nonatomic) NSString *longitude;
+
 @property (strong,nonatomic) NSData *image;
 @property (strong,nonatomic) NSDate *creationDate;
 
@@ -27,17 +33,44 @@
 +(instancetype) scoopWithTitle:(NSString *) aTitle
                         author:(NSString *) anAuthor
                           text:(NSString *) aText
-                        rating:(NSNumber *) aRating
                         coords:(CLLocationCoordinate2D) coords
                          image:(NSData *) anImage;
+
+//+(instancetype) scoopWithTitle:(NSString *) aTitle
+//                        author:(NSString *) anAuthor
+//                          text:(NSString *) aText
+//                      latitude:(double) aLatitude
+//                     longitude:(double) aLongitude
+//                         image:(NSData *) anImage;
+
++(instancetype) scoopWithTitle:(NSString *) aTitle
+                        author:(NSString *) anAuthor
+                          text:(NSString *) aText
+                      latitude:(NSString *) aLatitude
+                     longitude:(NSString *) aLongitude
+                         image:(NSData *) anImage;
+
 
 #pragma mark - Instance methods
 // Designated
 -(id) initWithTitle:(NSString *) aTitle
              author:(NSString *) anAuthor
                text:(NSString *) aText
-             rating:(NSNumber *) aRating
              coords:(CLLocationCoordinate2D) coords
+              image:(NSData *) anImage;
+
+//-(id) initWithTitle:(NSString *) aTitle
+//             author:(NSString *) anAuthor
+//               text:(NSString *) aText
+//           latitude:(double) aLatitude
+//          longitude:(double) aLongitude
+//              image:(NSData *) anImage;
+
+-(id) initWithTitle:(NSString *) aTitle
+             author:(NSString *) anAuthor
+               text:(NSString *) aText
+           latitude:(NSString *) aLatitude
+          longitude:(NSString *) aLongitude
               image:(NSData *) anImage;
 
 -(NSDictionary *) proxyForDictionary;

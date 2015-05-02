@@ -28,4 +28,7 @@
 -(id) initWithAuthorProfile:(DTCAuthProfile *) authorProfile MSClient:(MSClient *) client;
 
 
+#pragma mark - Actions
+- (IBAction)hideKeyboard:(id)sender;
+
 @end

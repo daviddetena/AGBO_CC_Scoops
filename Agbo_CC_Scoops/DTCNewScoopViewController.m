@@ -10,8 +10,12 @@
 #import "DTCScoop.h"
 #import "DTCAuthProfile.h"
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+@import CoreLocation;
 
-@interface DTCNewScoopViewController ()
+@interface DTCNewScoopViewController ()<CLLocationManagerDelegate>{
+    CLLocationManager *locationManager;
+    CLLocationCoordinate2D location;
+}
 
 @end
 
@@ -31,12 +35,22 @@
 #pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.delegate = self;
+    [locationManager startUpdatingLocation];
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self configureUI];
+}
+
+- (void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,6 +76,46 @@
 }
 
 
+#pragma mark - Location
+
+- (void) configureLocation{
+
+    NSLog(@"Entro en configureLocation...");
+    
+    locationManager = [[CLLocationManager alloc]init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [locationManager startUpdatingLocation];
+
+    
+    /*
+    // Check if CL is active
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+
+    // If location services are active and the user authorizes location
+    if ([CLLocationManager locationServicesEnabled] && ((status == kCLAuthorizationStatusAuthorizedAlways) || (status == kCLAuthorizationStatusAuthorizedWhenInUse) || (status == kCLAuthorizationStatusNotDetermined))) {
+        
+        // Got location!
+        self.locationManager = [[CLLocationManager alloc]init];
+        self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        [self.locationManager startUpdatingLocation];
+        
+        // Sólo me interesan datos recientes (5 segs.)
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self zapLocationManager];
+        });
+    }
+     */
+}
+
+- (void) zapLocationManager{
+    [locationManager stopUpdatingLocation];
+    locationManager.delegate = nil;
+    locationManager = nil;
+}
+
+
 
 #pragma mark - Actions
 
@@ -77,21 +131,44 @@
     [self addScoopToAzure];
 }
 
+// Hide the keyboard when tapping in a non-text view
+- (IBAction)hideKeyboard:(id)sender{
+    [self.view endEditing:YES];
+}
+
 
 #pragma mark - Azure settings
 -(void) addScoopToAzure{
 
-    NSNumber *rating = @0;
-    DTCScoop *scoop = [DTCScoop scoopWithTitle:self.titleLabel.text
-                                        author:self.authorProfile.name
-                                          text:self.textView.text
-                                        rating:rating
-                                        coords:CLLocationCoordinate2DMake(0, 0)
-                                         image:nil];
+    NSLog(@"Location: (%f,%f)",location.latitude, location.longitude);
+//    DTCScoop *scoop = [DTCScoop scoopWithTitle:self.titleLabel.text
+//                                        author:self.authorProfile.name
+//                                          text:self.textView.text
+//                                      latitude:[NSString stringWithFormat:@"%f",location.latitude]
+//                                     longitude:[NSString stringWithFormat:@"%f",location.longitude]
+//                                         image:nil];
+//    DTCScoop *scoop = [DTCScoop scoopWithTitle:self.titleLabel.text
+//                                        author:self.authorProfile.name
+//                                          text:self.textView.text
+//                                        coords:location
+//                                         image:nil];
+    
     
     // Table from Azure where we save data
     MSTable *scoopsTable = [self.client tableWithName:@"news"];
-    [scoopsTable insert:[scoop proxyForAzureDictionary] completion:^(NSDictionary *item, NSError *error) {
+    
+    NSDictionary *scoopDict = @{@"authorId":self.client.currentUser.userId,
+                                @"title":self.titleLabel.text,
+                                @"author":self.authorProfile.name,
+                                @"text":self.textView.text,
+                                @"latitude":[NSString stringWithFormat:@"%f",location.latitude],
+                                @"longitude":[NSString stringWithFormat:@"%f",location.longitude],
+                                @"counter":@0,
+                                @"rating":@0,
+                                @"status":@"InReview"};
+    
+    
+    [scoopsTable insert:scoopDict completion:^(NSDictionary *item, NSError *error) {
         if (error) {
             NSLog(@"Error when adding new scoop to Azure --> %@",error);
         }
@@ -106,6 +183,46 @@
         }
     }];
 }
+
+
+#pragma mark - CLLocationManagerDelegate
+/*
+-(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    
+    if (oldLocation == nil) {
+        oldLocation = newLocation;
+    }
+    location = newLocation.coordinate;
+    NSLog(@"Current location: (%f,%f)",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
+
+}
+*/
+
+// Get some locations. Catch the last locations, which will be the best
+-(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    
+    NSLog(@"Estoy en didUpdateLocations...");
+    
+    // Stop using GPS to determine the location
+//    [self.locationManager stopUpdatingLocation];
+//    self.locationManager = nil;
+    
+    // Last location
+    CLLocation *loc = [locations lastObject];
+    
+    
+    //NSLog(@"Current location: (%f,%f)",loc.coordinate.latitude,loc.coordinate.longitude);
+    
+    location = loc.coordinate;
+    
+    /*
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"LOCATION" message:[NSString stringWithFormat:@"Current location: (%f,%f)",loc.coordinate.latitude,loc.coordinate.longitude] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Done", nil];
+     */
+    
+    //[alert show];
+    
+}
+
 
 
 
@@ -147,6 +264,10 @@
 - (void) textViewDidEndEditing:(UITextView *)textView{
     
 }
+
+
+
+
 
 
 #pragma mark - Notifications
