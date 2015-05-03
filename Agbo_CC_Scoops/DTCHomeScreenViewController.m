@@ -9,6 +9,7 @@
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
 #import "DTCHomeScreenViewController.h"
 #import "DTCEditorDashboardViewController.h"
+#import "DTCUserDashboardTableViewController.h"
 #import "AzureSettings.h"
 #import "DTCAuthProfile.h"
 #import "UIViewController+Navigation.h"
@@ -69,7 +70,7 @@
                        NSLog(@"Error when fetching FB data from Azure's backend API -> %@", error);
                    }
                    else{
-                       NSLog(@"%@", result);
+                       //NSLog(@"%@", result);
                        
                        // Present a new VC with data of the user logged in
                        NSURL *imgUrl = [NSURL URLWithString:result[@"picture"][@"data"][@"url"]];
@@ -92,7 +93,7 @@
                            }
                            else{
                                // Successfully logged in with FB. Save current user data to NSUserDefaults
-                               NSLog(@"user -> %@", user);
+                               //NSLog(@"user -> %@", user);
                                [self saveUserAuthInfo];
                                
                                // Call backend API to get some FB public data from the logged user
@@ -107,7 +108,7 @@
                                               NSLog(@"Error when fetching FB user data from Azure's backend API -> %@", error);
                                           }
                                           else{
-                                              NSLog(@"%@", result);
+                                              //NSLog(@"%@", result);
                                               
                                               // Present a new VC with data of the user logged in
                                               NSURL *imgUrl = [NSURL URLWithString:result[@"picture"][@"data"][@"url"]];
@@ -167,5 +168,9 @@
 }
 
 - (IBAction)displayUserView:(id)sender {
+    DTCUserDashboardTableViewController *userDashboardVC = [[DTCUserDashboardTableViewController alloc] initWithMSClient:client];
+    //[self.navigationController pushViewController:userDashboardVC animated:YES];
+    [self presentViewController:[userDashboardVC wrappedInNavigation] animated:YES completion:nil];
+    
 }
 @end

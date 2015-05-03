@@ -40,6 +40,7 @@
                     </state>
                     <connections>
                         <action selector="displayEditorView:" destination="-1" eventType="touchUpInside" id="yI2-gN-IjX"/>
+                        <action selector="displayUserView:" destination="-1" eventType="touchUpInside" id="cFM-bI-VSn"/>
                     </connections>
                 </button>
             </subviews>

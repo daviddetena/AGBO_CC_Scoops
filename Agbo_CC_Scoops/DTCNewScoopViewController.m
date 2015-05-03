@@ -80,8 +80,6 @@
 
 - (void) configureLocation{
 
-    NSLog(@"Entro en configureLocation...");
-    
     locationManager = [[CLLocationManager alloc]init];
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -140,22 +138,9 @@
 #pragma mark - Azure settings
 -(void) addScoopToAzure{
 
-    NSLog(@"Location: (%f,%f)",location.latitude, location.longitude);
-//    DTCScoop *scoop = [DTCScoop scoopWithTitle:self.titleLabel.text
-//                                        author:self.authorProfile.name
-//                                          text:self.textView.text
-//                                      latitude:[NSString stringWithFormat:@"%f",location.latitude]
-//                                     longitude:[NSString stringWithFormat:@"%f",location.longitude]
-//                                         image:nil];
-//    DTCScoop *scoop = [DTCScoop scoopWithTitle:self.titleLabel.text
-//                                        author:self.authorProfile.name
-//                                          text:self.textView.text
-//                                        coords:location
-//                                         image:nil];
-    
-    
     // Table from Azure where we save data
     MSTable *scoopsTable = [self.client tableWithName:@"news"];
+    
     
     NSDictionary *scoopDict = @{@"authorId":self.client.currentUser.userId,
                                 @"title":self.titleLabel.text,
@@ -165,7 +150,9 @@
                                 @"longitude":[NSString stringWithFormat:@"%f",location.longitude],
                                 @"counter":@0,
                                 @"rating":@0,
-                                @"status":@"InReview"};
+                                @"status":@"InReview",
+                                @"creationDate":[NSDate date],
+                                @"modificationDate":[NSDate date]};
     
     
     [scoopsTable insert:scoopDict completion:^(NSDictionary *item, NSError *error) {
@@ -173,7 +160,8 @@
             NSLog(@"Error when adding new scoop to Azure --> %@",error);
         }
         else{
-            NSLog(@"Scoop added successfully --> %@", item);
+            //NSLog(@"Scoop added successfully --> %@", item);
+
             // Hide this VC once the scoop has been saved to Azure
             [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
             
@@ -186,41 +174,32 @@
 
 
 #pragma mark - CLLocationManagerDelegate
-/*
--(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
-    
-    if (oldLocation == nil) {
-        oldLocation = newLocation;
-    }
-    location = newLocation.coordinate;
-    NSLog(@"Current location: (%f,%f)",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
-
-}
-*/
 
 // Get some locations. Catch the last locations, which will be the best
 -(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
     
     NSLog(@"Estoy en didUpdateLocations...");
     
-    // Stop using GPS to determine the location
-//    [self.locationManager stopUpdatingLocation];
-//    self.locationManager = nil;
-    
     // Last location
     CLLocation *loc = [locations lastObject];
-    
-    
-    //NSLog(@"Current location: (%f,%f)",loc.coordinate.latitude,loc.coordinate.longitude);
-    
     location = loc.coordinate;
     
-    /*
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"LOCATION" message:[NSString stringWithFormat:@"Current location: (%f,%f)",loc.coordinate.latitude,loc.coordinate.longitude] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Done", nil];
-     */
+    // Stop using GPS to determine the location
+    [locationManager stopUpdatingLocation];
+    locationManager = nil;
+}
+
+
+#pragma mark - Utils
+
+-(NSString *) datetimeFromNowWithPrettyFormat{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd 'at' HH:mm:ss"];
     
-    //[alert show];
+    NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:162000];
     
+    NSString *formattedDateString = [dateFormatter stringFromDate:date];
+    return formattedDateString;
 }
 
 
@@ -264,9 +243,6 @@
 - (void) textViewDidEndEditing:(UITextView *)textView{
     
 }
-
-
-
 
 
 

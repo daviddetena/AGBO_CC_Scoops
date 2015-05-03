@@ -13,6 +13,7 @@
 
 #pragma mark - Properties
 
+@property (copy,nonatomic) NSString *idScoop;
 @property (copy,nonatomic) NSString *title;
 @property (copy,nonatomic) NSString *author;
 @property (copy,nonatomic) NSString *text;
@@ -20,35 +21,37 @@
 @property (nonatomic) NSNumber *rating;
 @property (nonatomic) NSNumber *counter;
 @property (nonatomic) CLLocationCoordinate2D coords;
-//@property (nonatomic) double latitude;
-//@property (nonatomic) double longitude;
 @property (copy,nonatomic) NSString *latitude;
 @property (copy,nonatomic) NSString *longitude;
-
 @property (strong,nonatomic) NSData *image;
 @property (strong,nonatomic) NSDate *creationDate;
+@property (strong,nonatomic) NSDate *modificationDate;
+@property (copy,nonatomic) NSString *creationDateString;
+@property (copy,nonatomic) NSString *modificationDateString;
 
 
 #pragma mark - Factory init
 +(instancetype) scoopWithTitle:(NSString *) aTitle
                         author:(NSString *) anAuthor
                           text:(NSString *) aText
+                        status:(NSString *) aStatus
                         coords:(CLLocationCoordinate2D) coords
                          image:(NSData *) anImage;
 
-//+(instancetype) scoopWithTitle:(NSString *) aTitle
-//                        author:(NSString *) anAuthor
-//                          text:(NSString *) aText
-//                      latitude:(double) aLatitude
-//                     longitude:(double) aLongitude
-//                         image:(NSData *) anImage;
 
-+(instancetype) scoopWithTitle:(NSString *) aTitle
-                        author:(NSString *) anAuthor
-                          text:(NSString *) aText
-                      latitude:(NSString *) aLatitude
-                     longitude:(NSString *) aLongitude
-                         image:(NSData *) anImage;
++(instancetype) scoopFromAzureWithID:(NSString *) idScoop
+                               title:(NSString *) aTitle
+                              author:(NSString *) anAuthor
+                                text:(NSString *) aText
+                              status:(NSString *) aStatus
+                             counter:(NSNumber *) aCounter
+                              rating:(NSNumber *) aRating
+                              coords:(CLLocationCoordinate2D) coords
+                               image:(NSData *) anImage
+                        creationDate:(NSString *) aCreationDate
+                    modificationDate:(NSString *) aModificationDate;
+
+
 
 
 #pragma mark - Instance methods
@@ -56,24 +59,31 @@
 -(id) initWithTitle:(NSString *) aTitle
              author:(NSString *) anAuthor
                text:(NSString *) aText
+             status:(NSString *) aStatus
              coords:(CLLocationCoordinate2D) coords
               image:(NSData *) anImage;
 
-//-(id) initWithTitle:(NSString *) aTitle
-//             author:(NSString *) anAuthor
-//               text:(NSString *) aText
-//           latitude:(double) aLatitude
-//          longitude:(double) aLongitude
-//              image:(NSData *) anImage;
 
--(id) initWithTitle:(NSString *) aTitle
-             author:(NSString *) anAuthor
-               text:(NSString *) aText
-           latitude:(NSString *) aLatitude
-          longitude:(NSString *) aLongitude
-              image:(NSData *) anImage;
+-(id) initFromAzureWithID:(NSString *) idScoop
+                    title:(NSString *) aTitle
+                   author:(NSString *) anAuthor
+                     text:(NSString *) aText
+                   status:(NSString *) aStatus
+                  counter:(NSNumber *) aCounter
+                   rating:(NSNumber *) aRating
+                   coords:(CLLocationCoordinate2D) coords
+                    image:(NSData *) anImage
+             creationDate:(NSString *) aCreationDate
+         modificationDate:(NSString *) aModificationDate;
 
 -(NSDictionary *) proxyForDictionary;
 -(NSDictionary *) proxyForAzureDictionary;
+
+-(NSString *) creationDateWithPrettyFormat;
+-(NSString *) modificationDateWithPrettyFormat;
+
+
+
+
 
 @end

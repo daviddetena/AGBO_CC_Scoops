@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		590C98C21AF55B2E00E1F3F1 /* DTCUserDashboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 590C98C11AF55B2E00E1F3F1 /* DTCUserDashboardTableViewController.m */; };
 		59449C161AF12CAA0003EB50 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59449C151AF12CAA0003EB50 /* main.m */; };
 		59449C191AF12CAA0003EB50 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59449C181AF12CAA0003EB50 /* AppDelegate.m */; };
 		59449C1B1AF12CAA0003EB50 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59449C1A1AF12CAA0003EB50 /* Images.xcassets */; };
@@ -25,8 +26,12 @@
 		59564C201AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59564C1E1AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.m */; };
 		59564C211AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59564C1F1AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.xib */; };
 		5994C1931AF53C3D0053E016 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5994C1921AF53C3D0053E016 /* MapKit.framework */; };
+		5994D7001AF6661400785EBC /* noimageThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 5994D6FE1AF6661400785EBC /* noimageThumb.png */; };
+		5994D7011AF6661400785EBC /* noimageThumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5994D6FF1AF6661400785EBC /* noimageThumb@2x.png */; };
 		59C0CE271AF2198300014AA9 /* UIViewController+Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C0CE261AF2198300014AA9 /* UIViewController+Navigation.m */; };
 		59CE11921AF394020038B008 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59CE11911AF394020038B008 /* CoreLocation.framework */; };
+		59E525E01AF6305D0094174B /* DTCUserScoopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E525DE1AF6305D0094174B /* DTCUserScoopDetailViewController.m */; };
+		59E525E11AF6305D0094174B /* DTCUserScoopDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59E525DF1AF6305D0094174B /* DTCUserScoopDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		590C98C01AF55B2E00E1F3F1 /* DTCUserDashboardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCUserDashboardTableViewController.h; sourceTree = "<group>"; };
+		590C98C11AF55B2E00E1F3F1 /* DTCUserDashboardTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCUserDashboardTableViewController.m; sourceTree = "<group>"; };
 		59449C101AF12CAA0003EB50 /* Agbo_CC_Scoops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Agbo_CC_Scoops.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59449C141AF12CAA0003EB50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59449C151AF12CAA0003EB50 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -70,9 +77,14 @@
 		59564C1E1AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCEditorScoopDetailViewController.m; sourceTree = "<group>"; };
 		59564C1F1AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DTCEditorScoopDetailViewController.xib; sourceTree = "<group>"; };
 		5994C1921AF53C3D0053E016 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		5994D6FE1AF6661400785EBC /* noimageThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimageThumb.png; sourceTree = "<group>"; };
+		5994D6FF1AF6661400785EBC /* noimageThumb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noimageThumb@2x.png"; sourceTree = "<group>"; };
 		59C0CE251AF2198300014AA9 /* UIViewController+Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Navigation.h"; sourceTree = "<group>"; };
 		59C0CE261AF2198300014AA9 /* UIViewController+Navigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Navigation.m"; sourceTree = "<group>"; };
 		59CE11911AF394020038B008 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		59E525DD1AF6305D0094174B /* DTCUserScoopDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCUserScoopDetailViewController.h; sourceTree = "<group>"; };
+		59E525DE1AF6305D0094174B /* DTCUserScoopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCUserScoopDetailViewController.m; sourceTree = "<group>"; };
+		59E525DF1AF6305D0094174B /* DTCUserScoopDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DTCUserScoopDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,12 +208,17 @@
 				59449C491AF141480003EB50 /* DTCEditorDashboardViewController.h */,
 				59449C4A1AF141480003EB50 /* DTCEditorDashboardViewController.m */,
 				59449C4B1AF141480003EB50 /* DTCEditorDashboardViewController.xib */,
-				59564C161AF286FE00EA3CE4 /* DTCNewScoopViewController.h */,
-				59564C171AF286FE00EA3CE4 /* DTCNewScoopViewController.m */,
-				59564C181AF286FE00EA3CE4 /* DTCNewScoopViewController.xib */,
 				59564C1D1AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.h */,
 				59564C1E1AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.m */,
 				59564C1F1AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.xib */,
+				59564C161AF286FE00EA3CE4 /* DTCNewScoopViewController.h */,
+				59564C171AF286FE00EA3CE4 /* DTCNewScoopViewController.m */,
+				59564C181AF286FE00EA3CE4 /* DTCNewScoopViewController.xib */,
+				590C98C01AF55B2E00E1F3F1 /* DTCUserDashboardTableViewController.h */,
+				590C98C11AF55B2E00E1F3F1 /* DTCUserDashboardTableViewController.m */,
+				59E525DD1AF6305D0094174B /* DTCUserScoopDetailViewController.h */,
+				59E525DE1AF6305D0094174B /* DTCUserScoopDetailViewController.m */,
+				59E525DF1AF6305D0094174B /* DTCUserScoopDetailViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -209,6 +226,8 @@
 		59449C3C1AF133F10003EB50 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5994D6FE1AF6661400785EBC /* noimageThumb.png */,
+				5994D6FF1AF6661400785EBC /* noimageThumb@2x.png */,
 				59564C1B1AF29BC000EA3CE4 /* noimageSquare.png */,
 			);
 			name = Resources;
@@ -276,6 +295,7 @@
 					};
 					59449C221AF12CAB0003EB50 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = QF5L9JVR92;
 						TestTargetID = 59449C0F1AF12CAA0003EB50;
 					};
 				};
@@ -308,8 +328,11 @@
 				59449C1E1AF12CAA0003EB50 /* LaunchScreen.xib in Resources */,
 				59449C1B1AF12CAA0003EB50 /* Images.xcassets in Resources */,
 				59564C211AF2A17400EA3CE4 /* DTCEditorScoopDetailViewController.xib in Resources */,
+				5994D7011AF6661400785EBC /* noimageThumb@2x.png in Resources */,
 				59449C4D1AF141480003EB50 /* DTCEditorDashboardViewController.xib in Resources */,
+				59E525E11AF6305D0094174B /* DTCUserScoopDetailViewController.xib in Resources */,
 				59449C421AF137EC0003EB50 /* DTCHomeScreenViewController.xib in Resources */,
+				5994D7001AF6661400785EBC /* noimageThumb.png in Resources */,
 				59564C1C1AF29BC000EA3CE4 /* noimageSquare.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,7 +352,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				59449C371AF133C40003EB50 /* DTCScoop.m in Sources */,
+				590C98C21AF55B2E00E1F3F1 /* DTCUserDashboardTableViewController.m in Sources */,
 				59449C191AF12CAA0003EB50 /* AppDelegate.m in Sources */,
+				59E525E01AF6305D0094174B /* DTCUserScoopDetailViewController.m in Sources */,
 				59449C4C1AF141480003EB50 /* DTCEditorDashboardViewController.m in Sources */,
 				59449C161AF12CAA0003EB50 /* main.m in Sources */,
 				59C0CE271AF2198300014AA9 /* UIViewController+Navigation.m in Sources */,
@@ -409,6 +434,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "b4dfaeb4-7387-4eb0-af05-34962a5bee46";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -486,6 +512,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -497,6 +525,7 @@
 				INFOPLIST_FILE = Agbo_CC_ScoopsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Agbo_CC_Scoops.app/Agbo_CC_Scoops";
 			};
 			name = Debug;
@@ -505,6 +534,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -512,6 +543,7 @@
 				INFOPLIST_FILE = Agbo_CC_ScoopsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Agbo_CC_Scoops.app/Agbo_CC_Scoops";
 			};
 			name = Release;

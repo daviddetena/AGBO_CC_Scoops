@@ -8,8 +8,12 @@
 
 #import "AppDelegate.h"
 #import "DTCHomeScreenViewController.h"
+#import "AzureSettings.h"
+#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
 
-@interface AppDelegate ()
+@interface AppDelegate (){
+    MSClient *client;
+}
 
 @end
 
@@ -20,9 +24,18 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
+    // Set Azure's client
+    client = [MSClient clientWithApplicationURL:[NSURL URLWithString:AZURE_END_POINT] applicationKey:AZURE_APP_KEY];
+    
+    
+    // Versión iOS <8
+    //[[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
+    
+    // iOS 8>
+    [self registerNotificationRemotes];
+    
     DTCHomeScreenViewController *homeScreenVC = [[DTCHomeScreenViewController alloc]init];
     self.window.rootViewController = homeScreenVC;
-    
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -50,5 +63,47 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+#pragma mark - Notifications
+
+// Error al registrarse
+- (void) application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    if (error) {
+        NSLog(@"Error al registrarse --> %@", error);
+    }
+}
+
+// Recibimos notificación
+- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    
+    NSLog(@"%@",userInfo);
+}
+
+// Registramos el dispositivo para recibir notificaciones remotas a través del servicio de Azure
+- (void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    [client.push registerNativeWithDeviceToken:deviceToken tags:@[@""] completion:^(NSError *error) {
+        
+        if (error) {
+            NSLog(@"Error al recibir notificación --> %@", error.description);
+        }
+        else{
+            NSLog(@"Exito al registrarse en notificaciones -->");
+        }
+    }];
+}
+
+
+- (void) registerNotificationRemotes{
+    UIApplication *application = [UIApplication sharedApplication];
+    
+    // Tipos de notificacions que se podrán recibir
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound
+                                                                             categories:nil ];
+    
+    [application registerUserNotificationSettings:settings];
+}
+
+
 
 @end

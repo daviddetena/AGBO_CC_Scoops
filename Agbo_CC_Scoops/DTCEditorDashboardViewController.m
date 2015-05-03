@@ -31,8 +31,6 @@
     if (self = [super initWithNibName:nil bundle:nil]) {
         _authorProfile = authorProfile;
         _client = client;
-        _inReviewScoops = [@[]mutableCopy];
-        _publishedScoops = [@[]mutableCopy];
     }
     return self;
 }
@@ -112,6 +110,9 @@
 #pragma mark - Azure settings
 - (void) fetchScoopsFromAzure{
 
+    _inReviewScoops = [@[]mutableCopy];
+    _publishedScoops = [@[]mutableCopy];
+    
     // Table
     MSTable *scoopsTable = [self.client tableWithName:@"news"];
     
@@ -166,25 +167,21 @@
         
         //
         
-        CLLocationCoordinate2D current = CLLocationCoordinate2DMake([[NSDecimalNumber decimalNumberWithString:item[@"latitude"]] doubleValue],[[NSDecimalNumber decimalNumberWithString:item[@"longitude"]] doubleValue]);
+        CLLocationCoordinate2D currentCoords = CLLocationCoordinate2DMake([[NSDecimalNumber decimalNumberWithString:item[@"latitude"]] doubleValue],[[NSDecimalNumber decimalNumberWithString:item[@"longitude"]] doubleValue]);
         
         
-        //NSLog(@"%@",current);
-        
-        DTCScoop *scoop = [DTCScoop scoopWithTitle:item[@"title"]
-                                            author:item[@"author"]
-                                              text:item[@"text"]
-                                            coords:current
-                                             image:nil];
-//        DTCScoop *scoop = [DTCScoop scoopWithTitle:item[@"title"]
-//                                            author:item[@"title"]
-//                                              text:item[@"text"]
-//                                          latitude:item[@"latitude"]
-//                                         longitude:item[@"longitude"]
-//                                             image:nil];
-        
-        //DTCScoop *scoop = [DTCScoop scoopWithTitle:item[@"title"] author:item[@"author"] text:item[@"text"] rating:item[@"rating"]  image:nil];
-        
+        DTCScoop *scoop = [DTCScoop scoopFromAzureWithID:item[@"id"]
+                                                   title:item[@"title"]
+                                                  author:item[@"author"]
+                                                    text:item[@"text"]
+                                                  status:item[@"status"]
+                                                 counter:item[@"counter"]
+                                                  rating:item[@"rating"]
+                                                  coords:currentCoords
+                                                   image:nil
+                                            creationDate:item[@"creationDate"]
+                                        modificationDate:item[@"modificationDate"]];
+
         NSLog(@"Current location: (%f,%f)",scoop.coords.latitude,scoop.coords.longitude);
         
         if ([item[@"status"] isEqualToString:@"InReview"]) {
@@ -246,7 +243,7 @@
     fmt.dateStyle = NSDateFormatterFullStyle;
     
     cell.textLabel.text = scoop.title;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Created at: %@",[fmt stringFromDate:scoop.creationDate]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Last modified: %@",scoop.modificationDateWithPrettyFormat];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;

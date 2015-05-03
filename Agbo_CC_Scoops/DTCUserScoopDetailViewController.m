@@ -1,29 +1,30 @@
 //
-//  DTCEditorScoopDetailViewController.m
+//  DTCUserScoopDetailViewController.m
 //  Agbo_CC_Scoops
 //
-//  Created by David de Tena on 30/04/15.
+//  Created by David de Tena on 03/05/15.
 //  Copyright (c) 2015 David de Tena. All rights reserved.
 //
 
-#import "DTCEditorScoopDetailViewController.h"
+#import "DTCUserScoopDetailViewController.h"
 #import "DTCScoop.h"
 
-@interface DTCEditorScoopDetailViewController (){
+@interface DTCUserScoopDetailViewController (){
     NSString *address;
     MKPointAnnotation *annotation;
 }
 
+
 @end
 
-@implementation DTCEditorScoopDetailViewController
+@implementation DTCUserScoopDetailViewController
 
 
 #pragma mark - Init
-
--(id) initWithModel:(DTCScoop *) model{
+-(id) initWithModel:(DTCScoop *) model client:(MSClient *) client{
     if (self = [super init]) {
         _model = model;
+        _client = client;
         self.title = model.title;
     }
     return self;
@@ -49,19 +50,26 @@
 }
 
 
+
 #pragma mark - UI
 
 -(void) configureUI{
+    
+    // Right bar button to rate
+    UIBarButtonItem *rateButton = [[UIBarButtonItem alloc] initWithTitle:@"Rate" style:UIBarButtonItemStyleDone target:self action:@selector(rateScoop:)];
+    self.navigationItem.rightBarButtonItem = rateButton;
+    
+    // Top-left alignment for textView
     self.automaticallyAdjustsScrollViewInsets = NO;
-    //NSLog(@"Scoop location: (%f,%f)",self.model.coords.latitude,self.model.coords.longitude);
+    NSLog(@"Scoop location: (%f,%f)",self.model.coords.latitude,self.model.coords.longitude);
     
-    self.titleLabel.text = self.model.title;
-    
+    // Labels
+    self.titleLabel.text = self.model.title;    
     self.textView.text = self.model.text;
     self.textView.font = [UIFont fontWithName:@"Helvetica Neue" size:15];
     
-    self.latitudeLabel.text = [NSString stringWithFormat:@"%f",self.model.coords.latitude];
-    self.longitudeLabel.text = [NSString stringWithFormat:@"%f",self.model.coords.longitude];
+   // NSDecimalNumber decimalNumberWithString:item[@"latitude"]] doubleValue]
+    self.ratingLabel.text = [NSString stringWithFormat:@"%@",self.model.rating];
     
     // Image
     self.imageView.layer.cornerRadius = self.imageView.frame.size.width/2;
@@ -81,6 +89,7 @@
 }
 
 
+
 #pragma mark - Utils
 
 // Apply inverse geoLocater from the scoop location
@@ -95,7 +104,7 @@
     CLLocation *location = [[CLLocation alloc] initWithLatitude:self.model.coords.latitude longitude:self.model.coords.longitude];
     
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
-        //NSLog(@"Found placemarks: %@, error: %@", placemarks, error);
+        NSLog(@"Found placemarks: %@, error: %@", placemarks, error);
         if (error == nil && [placemarks count]>0) {
             CLPlacemark *placemark = [placemarks lastObject];
             
@@ -104,8 +113,8 @@
                                    placemark.thoroughfare,
                                    placemark.locality,
                                    placemark.country];
-                       
-
+            
+            
             MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.model.coords, 680, 680);
             MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
             [self.mapView setRegion:adjustedRegion animated:YES];
@@ -120,7 +129,41 @@
             [self.mapView setRegion:adjustedRegion animated:YES];
             [self.mapView addAnnotation:annotation];
         }
+        
+    }];
+}
 
+
+#pragma mark - Actions
+
+- (IBAction)sliderDidChangeValue:(id)sender {
+    self.myRatingLabel.text = [NSString stringWithFormat:@"My rating: %d",(int)self.myRatingSlider.value];
+}
+
+// Save rating to Azure
+- (void) rateScoop:(id) sender{
+    
+    // Some math calcs
+    int currentCounter = (int) [self.model.counter integerValue];
+    int counter = currentCounter + 1;
+    
+    double currentRating = (double) self.myRatingSlider.value;
+    double overallRating = (double) [self.model.rating doubleValue];
+    double rating = (overallRating + currentRating)/counter;
+    
+    //MSTable
+    MSTable *scoopsTable = [self.client tableWithName:@"news"];
+    self.model.rating = [NSNumber numberWithDouble:rating];
+    self.model.counter = [NSNumber numberWithInt:counter];
+    NSDictionary *updated = [self.model proxyForAzureDictionary];
+    
+    [scoopsTable update:updated completion:^(NSDictionary *item, NSError *error) {
+        if (error) {
+            NSLog(@"Error when updating");
+        }
+        else{
+            NSLog(@"Updated");
+        }
     }];
 }
 
